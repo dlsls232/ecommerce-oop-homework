@@ -55,3 +55,16 @@ def test_price_setter_rejects_negative(capsys):
     assert product.price == 50000.0
     message = "Цена не должна быть нулевая или отрицательная"
     assert message in capsys.readouterr().out
+
+
+def test_product_str():
+    product = Product("Телефон", "Смартфон", 80, 15)
+
+    assert str(product) == "Телефон, 80 руб. Остаток: 15 шт."
+
+
+def test_product_add():
+    product_a = Product("Телефон", "Смартфон", 100, 10)
+    product_b = Product("Ноутбук", "Компьютер", 200, 2)
+
+    assert product_a + product_b == 1400

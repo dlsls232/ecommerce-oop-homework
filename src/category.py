@@ -1,4 +1,3 @@
-
 """Модуль с классом Category."""
 
 from src.product import Product
@@ -23,6 +22,16 @@ class Category:
         Category.category_count += 1
         Category.product_count += len(products)
 
+    def __str__(self) -> str:
+        """Возвращает строковое представление категории."""
+        total_quantity = sum(
+            product.quantity for product in self.__products
+        )
+        return (
+            f"{self.name}, количество продуктов: "
+            f"{total_quantity} шт."
+        )
+
     def add_product(self, product: Product) -> None:
         """Добавляет товар в категорию."""
         self.__products.append(product)
@@ -31,12 +40,6 @@ class Category:
     @property
     def products(self) -> str:
         """Возвращает список товаров в виде строки."""
-        products_string = ""
-
-        for product in self.__products:
-            products_string += (
-                f"{product.name}, {product.price} руб. "
-                f"Остаток: {product.quantity} шт.\n"
-            )
-
-        return products_string
+        return "".join(
+            f"{product}\n" for product in self.__products
+        )

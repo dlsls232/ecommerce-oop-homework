@@ -1,4 +1,3 @@
-
 """Тесты класса Category."""
 
 from src.category import Category
@@ -45,3 +44,17 @@ def test_product_count_is_number_of_products_not_stock_quantity():
     Category("Электроника", "Техника", [first_product, second_product])
 
     assert Category.product_count == initial_count + 2
+
+
+def test_category_str():
+    first_product = Product("Телефон", "Смартфон", 100.0, 20)
+    second_product = Product("Ноутбук", "Компьютер", 200.0, 7)
+    category = Category(
+        "Электроника",
+        "Техника",
+        [first_product, second_product],
+    )
+
+    assert str(category) == (
+        "Электроника, количество продуктов: 27 шт."
+    )
