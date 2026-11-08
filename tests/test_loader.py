@@ -1,4 +1,3 @@
-
 """Тесты загрузки данных из JSON."""
 
 import json
@@ -32,7 +31,13 @@ def test_load_categories(tmp_path):
 
     assert len(categories) == 1
     assert categories[0].name == "Электроника"
-    assert categories[0].products[0].name == "Телефон"
-    assert isinstance(categories[0].products[0].price, float)
+    assert categories[0].products == (
+        "Телефон, 49999.9 руб. Остаток: 5 шт.\n"
+    )
+
+    product = categories[0]._Category__products[0]
+    assert product.name == "Телефон"
+    assert isinstance(product.price, float)
+
     assert Category.category_count == 1
     assert Category.product_count == 1

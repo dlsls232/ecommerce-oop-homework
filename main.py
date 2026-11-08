@@ -2,6 +2,7 @@
 
 from pathlib import Path
 
+from src.category import Category
 from src.loader import load_categories
 
 
@@ -13,14 +14,10 @@ def main() -> None:
     for category in categories:
         print(f"Категория: {category.name}")
         print(f"Описание: {category.description}")
-        for product in category.products:
-            print(
-                f"- {product.name}: {product.price:.2f} руб. "
-                f"(в наличии: {product.quantity})"
-            )
+        print(category.products, end="")
 
-    print(f"Всего категорий: {categories[0].category_count}")
-    print(f"Всего товаров: {categories[0].product_count}")
+    print(f"Всего категорий: {Category.category_count}")
+    print(f"Всего товаров: {Category.product_count}")
 
 
 if __name__ == "__main__":
